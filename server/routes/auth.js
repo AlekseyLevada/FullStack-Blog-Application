@@ -1,21 +1,18 @@
 import {Router} from "express";
-import {register, login, myProfile} from "../controller/auth.js";
+import {myProfile} from "../controller/get-profile.js";
+import {register} from "../controller/register.js";
+import {login} from "../controller/login.js";
 
 const router = new Router()
 
 // Registration
-router.post('/register', (req, res) => {
-
-})
+router.post('/register', register)
 
 // Login
-router.post('/login', (req, res) => {
-
-})
+router.post('/login', login)
 
 // My Profile
-
-
+router.get('/myprofile', myProfile)
 
 export default router
 
