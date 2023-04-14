@@ -7,23 +7,21 @@ import authRoutes from './routes/auth.js'
 const app = express();
 dotenv.config();
 
-// Middlewares
-app.use(cors())
-app.use(express.json())
-
-
 // Constants
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3002
 const DB_USER = process.env.DB_USER
 const DB_PASSWORD = process.env.DB_PASSWORD
 const DB_NAME = process.env.DB_NAME
 
+// Middlewares
+app.use(cors())
+app.use(express.json())
 
 // Routes
 app.use('/api/auth', authRoutes)
 
 
-async function start() {
+async function requestDB() {
    try{
       await mongoose.connect(
           `mongodb+srv://${DB_USER}:${DB_PASSWORD}@lessonsdb.6d06en5.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`)
@@ -35,5 +33,5 @@ async function start() {
       console.log(err)
    }
 }
-start()
+requestDB()
 

@@ -36,5 +36,6 @@ export const register = async (req, res) => {
                 message: 'Произошла ошибка при регистрации нового пользователя'
             }
         )
+        console.log(err)
     }
 }
