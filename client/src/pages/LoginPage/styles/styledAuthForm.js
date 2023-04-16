@@ -19,6 +19,7 @@ display: flex;
     gap: 5px;
   }
   input {
+    background-color: #e4e4e4;
     padding: 5px;
     font-size: 14px;
     height: 30px;
@@ -39,9 +40,5 @@ display: flex;
     font-size: 14px;
     color: #c9c9c9;
     transition: .3s ease-in-out;
-    &:hover {
-      color: #000;
-      transition: .3s ease-in-out;
-    }
   }
 `
