@@ -4,8 +4,8 @@ import { MainPage } from "./pages/MainPage";
 import { AllPosts } from "./pages/AllPosts";
 import { PostPage } from "./pages/PostPage";
 import { AddPost } from "./pages/AddPost";
-import {RegisterPage} from './pages/RegisterPage';
-import {LoginPage} from './pages/LoginPage';
+import {RegisterPage} from './pages/RegisterPage/RegisterPage';
+import {LoginPage} from './pages/LoginPage/LoginPage';
 import {EditPost} from './pages/EditPost';
 
 export const App = () => {
