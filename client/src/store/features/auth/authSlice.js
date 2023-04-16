@@ -6,7 +6,9 @@ export const authSlice = createSlice({
         user: null,
         token: null,
     },
-    reducers: {},
+    reducers: {
+
+    },
 })
 
 export const {} = authSlice.actions
