@@ -27,6 +27,7 @@ export const register = async (req, res) => {
       newUser,
       message: "Пользователь успешно зарегистрирован",
     });
+
   } catch (err) {
     res.json({
       message: "Произошла ошибка при регистрации нового пользователя",
