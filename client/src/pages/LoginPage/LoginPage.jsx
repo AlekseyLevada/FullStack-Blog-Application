@@ -1,3 +1,4 @@
+import React from "react";
 import {StyledLoginPage} from './styles/styledLoginPage';
 import {StyledAuthForm} from "./styles/styledAuthForm";
 import {StyledButtonsBlock} from "./styles/styledButtonsBlock";

@@ -9,7 +9,7 @@ export const register = async (req, res) => {
 
     if (isUsed) {
       res.json({
-        message: "Данный username уже используется",
+        message: "Данный Username уже занят",
       });
     }
 
