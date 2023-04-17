@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
-import {registerUser} from "../../store/features/auth/authSlice";
+import {registerUser} from "../../store/thunks/registerUser";
 import {StyledRegisterPage} from './styles/styledRegisterPage';
 import {StyledAuthForm} from "./styles/styledAuthForm";
 import {StyledButtonsBlock} from "./styles/styledButtonsBlock";

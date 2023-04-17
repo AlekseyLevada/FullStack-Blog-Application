@@ -1,23 +1,5 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "../../../utils/axios/axios";
-
-export const registerUser = createAsyncThunk('auth/registerUser',
-    async ({username, password}) => {
-        try {
-            const { data } = await axios.post('/auth/register', {
-                username,
-                password,
-            })
-            if(data.token) {
-                window.localStorage.setItem('token', data.token)
-            }
-            return data
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-)
+import {createSlice} from "@reduxjs/toolkit";
+import {registerUser} from "../../thunks/registerUser";
 
 export const authSlice = createSlice({
     name: 'auth',
