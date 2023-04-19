@@ -22,6 +22,7 @@ export const myProfile = async (req, res) => {
                 expiresIn: '10h',
             }
         )
+
         res.json(
             {
                 user,

@@ -2,36 +2,50 @@ import User from "../models/user.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-export const login = async (req, res) => {
+export const login = async (req, res)=> {
     try {
         const {username, password} = req.body
 
-        const isExist = await User.findOne({username})
+        const user= await User.findOne({username})
 
-        if(!isExist) {
-            res.json({
-                message: 'Такого пользователя не существует'
-            })
+        if(!user) {
+            res.json(
+                {
+                    message: 'Такого Username не существует'
+                }
+            )
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, isExist.password)
+        const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
-        !isPasswordCorrect ? res.json({message: 'Пароли не совпадают'}) : null
+        if (!isPasswordCorrect) {
+            res.json(
+                {
+                    "message":"Неверный пароль"
+                }
+            )
+        }
 
-        const JWT = jwt.sign(
-            {id: isExist._id},
+        const token = jwt.sign(
+        { id: user._id },
             process.env.JWT_SECRET,
-            {expiresIn: '10h'}
+            { expiresIn: '10h'}
         )
+
         res.json(
             {
-                JWT,
-                isExist,
-                message: 'Добро пожаловать'
+                token,
+                user,
+                "message": "Добро пожаловать",
             }
         )
     }
     catch (err) {
+        res.json(
+            {
+                "message": "Ошибка аутентификации"
+            }
+        )
         console.log(err)
     }
 }
