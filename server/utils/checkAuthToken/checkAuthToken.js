@@ -1,15 +1,16 @@
-import jwt from 'jsonwebtoken';
+import JWT from 'jsonwebtoken';
 
 export const checkAuthToken = (req, res, next) => {
     const token = (req.headers.authorization || '').replace(/Bearer\s?/, '')
     if (token) {
         try {
-            const decoded = jwt.verify( token, process.env.JWT_SECRET)
+            const decoded = JWT.verify( token, process.env.JWT_SECRET)
             req.userId = decoded.id
             next()
         }
         catch (err) {
-            res.json(
+            console.log(err)
+            return res.status(404).json(
                 {
                     "message":'Ошибка проверки authToken',
                 }

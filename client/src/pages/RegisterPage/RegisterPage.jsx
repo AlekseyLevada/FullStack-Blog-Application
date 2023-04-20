@@ -7,15 +7,13 @@ import { StyledButtonsBlock } from "./styles/styledButtonsBlock";
 import { Link } from "react-router-dom";
 
 export const RegisterPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const getRegisterInfo = () => {
+  const getRegisterInfo = async () => {
     try {
-      dispatch(registerUser({ username, password }));
-      setUsername("");
-      setPassword("");
+      await dispatch(registerUser({ username, password }));
     }
     catch (err) {
       console.log(err);
@@ -23,7 +21,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <StyledRegisterPage onSubmit={(e) => e.preventDefault()}>
+    <StyledRegisterPage>
       <StyledAuthForm>
         <h2>Регистрация</h2>
         <label>

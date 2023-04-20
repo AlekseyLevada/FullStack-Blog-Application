@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { myProfile } from "../controller/get-profile.js";
-import { register } from "../controller/register.js";
-import { login } from "../controller/login.js";
+import { getProfile } from "../controllers/get-profile.js";
+import { register } from "../controllers/register.js";
+import { login } from "../controllers/login.js";
 import {checkAuthToken} from "../utils/checkAuthToken/checkAuthToken.js";
 
 const router = new Router();
@@ -13,6 +13,6 @@ router.post("/register", register);
 router.post("/login", login);
 
 // My Profile
-router.get("/myprofile", checkAuthToken, myProfile);
+router.get("/profile", checkAuthToken, getProfile);
 
 export default router;

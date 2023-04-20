@@ -4,20 +4,21 @@ import {loginUser} from "../../store/thunks/loginUser";
 import {StyledLoginPage} from './styles/styledLoginPage';
 import {StyledAuthForm} from "./styles/styledAuthForm";
 import {StyledButtonsBlock} from "./styles/styledButtonsBlock";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const getLoginInfo = () => {
-        dispatch(loginUser({username, password}))
+    const getLoginInfo = async () => {
+        await dispatch(loginUser({username, password}))
     }
 
     return(
         <StyledLoginPage>
-            <StyledAuthForm onSubmit={(e) => e.preventDefault()}>
+            <StyledAuthForm>
                 <h2>
                     Авторизация
                 </h2>
