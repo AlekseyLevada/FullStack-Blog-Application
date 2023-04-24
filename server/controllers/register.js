@@ -8,9 +8,10 @@ export const register = async (req, res) => {
     const isUsed = await User.findOne({ username });
 
     if (isUsed) {
-      return res.status(403).json({
-        message: "Данный Username уже занят",
-      });
+      return res.json(
+          {
+            message: "Данный Username уже занят"
+          }).status(403);
     }
 
     const salt = bcrypt.genSaltSync(10);

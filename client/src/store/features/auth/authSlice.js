@@ -28,9 +28,11 @@ export const authSlice = createSlice({
             state.token = null
             state.status = action.payload.message
         })
+
         // Login User
         builder.addCase(loginUser.pending, (state, action) => {
             state.isLoading = true
+            state.status = null
         })
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoading = false
@@ -40,6 +42,7 @@ export const authSlice = createSlice({
         })
         builder.addCase(loginUser.rejected, (state, action) => {
             state.status = action.payload.message
+            state.isLoading = false
         })
     }
 })

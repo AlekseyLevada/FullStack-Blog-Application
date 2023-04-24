@@ -8,6 +8,8 @@ import { AddPost } from "./pages/AddPost";
 import {RegisterPage} from './pages/RegisterPage/RegisterPage';
 import {LoginPage} from './pages/LoginPage/LoginPage';
 import {EditPost} from './pages/EditPost';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
   return (
@@ -21,6 +23,11 @@ export const App = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="edit" element={<EditPost />} />
       </Routes>
+          <ToastContainer
+              position={"bottom-right"}
+              hideProgressBar={true}
+              autoClose={2000}
+          />
       </Layout>
   );
 };

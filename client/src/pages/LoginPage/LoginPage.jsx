@@ -1,24 +1,40 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {loginUser} from "../../store/thunks/loginUser";
 import {StyledLoginPage} from './styles/styledLoginPage';
 import {StyledAuthForm} from "./styles/styledAuthForm";
 import {StyledButtonsBlock} from "./styles/styledButtonsBlock";
 import {Link, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const {status} = useSelector(state => state.auth)
 
     const getLoginInfo = async () => {
-        await dispatch(loginUser({username, password}))
+        try {
+            await dispatch(loginUser({username, password}))
+            setUsername('')
+            setPassword('')
+            toast(status)
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
+
+    // useEffect(() => {
+    //     if(status) {
+    //         toast(status)
+    //     }
+    // }, [status, navigate])
 
     return(
         <StyledLoginPage>
-            <StyledAuthForm>
+            <StyledAuthForm onSubmit={(e) => e.preventDefault()}>
                 <h2>
                     Авторизация
                 </h2>
