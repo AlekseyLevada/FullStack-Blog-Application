@@ -11,25 +11,21 @@ export const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const {status} = useSelector(state => state.auth)
+  const {message} = useSelector(state => state.auth)
 
   const getRegisterInfo = async () => {
     try {
       await dispatch(registerUser({ username, password }));
-      setUsername('')
-      setPassword('')
-      toast(status)
+      toast(message)
     }
     catch (err) {
       console.log(err);
     }
   };
 
-  // useEffect(() => {
-  //   if(status) {
-  //     toast(status)
-  //   }
-  // }, [status])
+  useEffect(() => {
+
+  },[message])
 
   return (
     <StyledRegisterPage>

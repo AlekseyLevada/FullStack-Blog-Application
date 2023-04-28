@@ -12,25 +12,21 @@ export const LoginPage = () => {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {status} = useSelector(state => state.auth)
+    const {message} = useSelector(state => state.auth)
 
     const getLoginInfo = async () => {
         try {
             await dispatch(loginUser({username, password}))
-            setUsername('')
-            setPassword('')
-            toast(status)
+            toast(message)
         }
         catch (err) {
             console.log(err)
         }
     }
 
-    // useEffect(() => {
-    //     if(status) {
-    //         toast(status)
-    //     }
-    // }, [status, navigate])
+    useEffect(() => {
+
+    }, [message])
 
     return(
         <StyledLoginPage>

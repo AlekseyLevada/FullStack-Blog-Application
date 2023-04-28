@@ -8,9 +8,9 @@ export const register = async (req, res) => {
     const isUsed = await User.findOne({ username });
 
     if (isUsed) {
-      return res.json(
+        return res.json(
           {
-            message: "Данный Username уже занят"
+            message:"Данный Username уже занят"
           }).status(403);
     }
 
@@ -30,18 +30,19 @@ export const register = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json({
-      user,
-      token,
-      message: "Пользователь успешно зарегистрирован",
-    });
+    return res.json(
+        {
+          user,
+          token,
+          message: "Пользователь успешно зарегистрирован"
+        }).status(200);
 
   } catch (err) {
     console.log(err);
-    return res.status(404).json(
+    return res.json(
         {
           message: "Произошла ошибка при регистрации нового пользователя",
         }
-    );
+    ).status(400);
   }
 };
