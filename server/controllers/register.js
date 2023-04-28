@@ -34,7 +34,7 @@ export const register = async (req, res) => {
         {
           user,
           token,
-          message: "Пользователь успешно зарегистрирован"
+          message: "Пользователь успешно зарегистрирован",
         }).status(200);
 
   } catch (err) {
@@ -43,6 +43,6 @@ export const register = async (req, res) => {
         {
           message: "Произошла ошибка при регистрации нового пользователя",
         }
-    ).status(400);
+    ).status(404);
   }
 };

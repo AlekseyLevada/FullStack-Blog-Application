@@ -17,7 +17,8 @@ export const LoginPage = () => {
     const getLoginInfo = async () => {
         try {
             await dispatch(loginUser({username, password}))
-            toast(message)
+            setUsername('')
+            setPassword('')
         }
         catch (err) {
             console.log(err)
@@ -25,7 +26,9 @@ export const LoginPage = () => {
     }
 
     useEffect(() => {
-
+        if(message){
+            toast(message)
+        }
     }, [message])
 
     return(

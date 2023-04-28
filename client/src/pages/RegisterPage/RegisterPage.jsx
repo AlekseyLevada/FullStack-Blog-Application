@@ -16,7 +16,8 @@ export const RegisterPage = () => {
   const getRegisterInfo = async () => {
     try {
       await dispatch(registerUser({ username, password }));
-      toast(message)
+      setUsername('')
+      setPassword('')
     }
     catch (err) {
       console.log(err);
@@ -24,7 +25,9 @@ export const RegisterPage = () => {
   };
 
   useEffect(() => {
-
+    if(message){
+      toast(message)
+    }
   },[message])
 
   return (
