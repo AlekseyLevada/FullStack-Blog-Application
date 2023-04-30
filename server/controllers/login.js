@@ -9,21 +9,21 @@ export const login = async (req, res)=> {
         const user= await User.findOne({username})
 
         if(!user) {
-            return res.status(404).json(
+            return res.json(
                 {
                     message: 'Пользователь не найден'
                 }
-            )
+            ).status(404)
         }
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
         if (!isPasswordCorrect) {
-            return res.status(403).json(
+            return res.json(
                 {
                     "message":"Неверный пользователь или пароль"
                 }
-            )
+            ).status(403)
         }
 
         const token = JWT.sign(
@@ -34,20 +34,20 @@ export const login = async (req, res)=> {
             }
         )
 
-        return res.status(200).json(
+        return res.json(
             {
                 user,
                 token,
                 "message": "Добро пожаловать",
             }
-        )
+        ).status(200)
     }
     catch (err) {
         console.log(err)
-        return res.status(404).json(
+        return res.json(
             {
                 "message": "Ошибка аутентификации"
             }
-        )
+        ).status(404)
     }
 }

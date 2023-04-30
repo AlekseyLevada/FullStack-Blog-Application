@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     if (isUsed) {
         return res.json(
           {
-            message:"Данный Username уже занят"
+            message:"Данный Username уже занят",
           }).status(403);
     }
 
@@ -41,7 +41,7 @@ export const register = async (req, res) => {
     console.log(err);
     return res.json(
         {
-          message: "Произошла ошибка при регистрации нового пользователя",
+          message: "Произошла ошибка при регистрации нового пользователя, обновите страницу и попробуйте повторно",
         }
     ).status(404);
   }

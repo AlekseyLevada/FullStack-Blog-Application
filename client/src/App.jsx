@@ -26,7 +26,7 @@ export const App = () => {
           <ToastContainer
               position={"bottom-right"}
               hideProgressBar={true}
-              autoClose={1000}
+              autoClose={3000}
           />
       </Layout>
   );

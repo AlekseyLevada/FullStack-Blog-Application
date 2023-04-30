@@ -4,13 +4,14 @@ import { registerUser } from "../../store/thunks/registerUser";
 import { StyledRegisterPage } from "./styles/styledRegisterPage";
 import { StyledAuthForm } from "./styles/styledAuthForm";
 import { StyledButtonsBlock } from "./styles/styledButtonsBlock";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
 
 export const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {message} = useSelector(state => state.auth)
 
   const getRegisterInfo = async () => {
