@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const StyledMainPage = styled.div`
-    height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  
   button {
+    cursor: pointer;
     width: 200px;
     height: 50px;
     background-color: tomato;

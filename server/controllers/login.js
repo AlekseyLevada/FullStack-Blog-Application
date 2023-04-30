@@ -11,7 +11,7 @@ export const login = async (req, res)=> {
         if(!user || !isPasswordCorrect) {
             return res.json(
                 {
-                    "message": "Неверный пользователь или пароль, обновите страницу и попробуйте повторно"
+                    "message": "Неверный логин или пароль, обновите страницу и попробуйте повторно"
                 }
             ).status(403)
         }
@@ -28,7 +28,7 @@ export const login = async (req, res)=> {
             {
                 user,
                 token,
-                "message": "Добро пожаловать"
+                "message": "Добро пожаловать, вы вошли в систему"
             }
         ).status(200)
     }

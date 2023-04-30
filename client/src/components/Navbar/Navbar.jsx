@@ -3,6 +3,7 @@ import {StyledButton} from "./styles/styledButton";
 import {StyledLogo} from "./styles/styledLogo";
 import {StyledMenu} from "./styles/styledMenu";
 import {Link} from "react-router-dom";
+import Logo from '../../images/logo-img/logo.svg'
 
 export const Navbar = () => {
 
@@ -11,7 +12,7 @@ export const Navbar = () => {
     return(
         <StyledNavbar>
             <StyledLogo>
-                LOGO
+                <img src={Logo} alt={"logotype"}/>
             </StyledLogo>
 
             {

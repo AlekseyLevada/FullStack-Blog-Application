@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {registerUser} from "../../thunks/registerUser";
 import {loginUser} from "../../thunks/loginUser";
+import {userProfile} from "../../thunks/userProfile";
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -11,7 +12,15 @@ export const authSlice = createSlice({
         status: null,
         message: null,
     },
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.isLoading = false
+            state.user = null
+            state.token = null
+            state.status = null
+            state.message = 'Вы вышли из профиля'
+        }
+    },
     extraReducers: builder => {
         // Registration User
         builder.addCase(registerUser.pending, (state, action) => {
@@ -46,6 +55,26 @@ export const authSlice = createSlice({
             state.user = action.payload.user
         })
         builder.addCase(loginUser.rejected, (state, action) => {
+            state.isLoading = false
+            state.user = null
+            state.token = null
+            state.status = action.payload.message
+            state.status = action.payload.status
+        })
+
+        // getProfile
+        builder.addCase(userProfile.pending, (state, action) => {
+            state.isLoading = true
+            state.status = null
+        })
+        builder.addCase(userProfile.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.status = action.payload.status
+            state.message = null
+            state.token = action.payload?.token
+            state.user = action.payload?.user
+        })
+        builder.addCase(userProfile.rejected, (state, action) => {
             state.isLoading = false
             state.user = null
             state.token = null

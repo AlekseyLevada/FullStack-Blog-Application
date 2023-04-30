@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { MainPage } from "./pages/MainPage/MainPage";
@@ -10,8 +10,15 @@ import {LoginPage} from './pages/LoginPage/LoginPage';
 import {EditPost} from './pages/EditPost';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {useDispatch} from "react-redux";
+import {userProfile} from "./store/thunks/userProfile";
 
 export const App = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(userProfile())
+    }, [])
   return (
       <Layout>
       <Routes>
@@ -25,7 +32,6 @@ export const App = () => {
       </Routes>
           <ToastContainer
               position={"bottom-right"}
-              hideProgressBar={true}
               autoClose={3000}
           />
       </Layout>
