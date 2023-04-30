@@ -26,7 +26,7 @@ export const LoginPage = () => {
     }
 
     useEffect(() => {
-        if(message){
+        if(message) {
             toast(message)
         }
     }, [message])

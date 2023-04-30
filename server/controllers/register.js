@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     if (isUsed) {
         return res.json(
           {
-            message:"Данный Username уже занят",
+            "message":"Данный Username уже занят, обновите страницу и попробуйте повторно",
           }).status(403);
     }
 
@@ -34,14 +34,14 @@ export const register = async (req, res) => {
         {
           user,
           token,
-          message: "Пользователь успешно зарегистрирован",
+          "message": "Пользователь успешно зарегистрирован",
         }).status(200);
 
   } catch (err) {
     console.log(err);
     return res.json(
         {
-          message: "Произошла ошибка при регистрации нового пользователя, обновите страницу и попробуйте повторно",
+          "message": "Произошла ошибка при регистрации нового пользователя, обновите страницу и попробуйте повторно",
         }
     ).status(404);
   }

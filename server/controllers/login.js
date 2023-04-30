@@ -5,23 +5,13 @@ import JWT from 'jsonwebtoken';
 export const login = async (req, res)=> {
     try {
         const {username, password} = req.body
+        const user= await User.findOne({ username })
+        const isPasswordCorrect = await bcrypt.compareSync(password, user.password)
 
-        const user= await User.findOne({username})
-
-        if(!user) {
+        if(!user || !isPasswordCorrect) {
             return res.json(
                 {
-                    message: 'Пользователь не найден'
-                }
-            ).status(404)
-        }
-
-        const isPasswordCorrect = await bcrypt.compare(password, user.password)
-
-        if (!isPasswordCorrect) {
-            return res.json(
-                {
-                    "message":"Неверный пользователь или пароль"
+                    "message": "Неверный пользователь или пароль, обновите страницу и попробуйте повторно"
                 }
             ).status(403)
         }
@@ -38,7 +28,7 @@ export const login = async (req, res)=> {
             {
                 user,
                 token,
-                "message": "Добро пожаловать",
+                "message": "Добро пожаловать"
             }
         ).status(200)
     }
@@ -46,7 +36,7 @@ export const login = async (req, res)=> {
         console.log(err)
         return res.json(
             {
-                "message": "Ошибка аутентификации"
+                "message": "Ошибка аутентификации, обновите страницу и попробуйте повторно"
             }
         ).status(404)
     }

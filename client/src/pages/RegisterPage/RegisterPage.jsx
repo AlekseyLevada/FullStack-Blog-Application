@@ -26,8 +26,13 @@ export const RegisterPage = () => {
   };
 
   useEffect(() => {
-    if(message){
+    if(message === "Данный Username уже занят, обновите страницу и попробуйте повторно") {
       toast(message)
+      navigate('/register')
+    }
+    else if (message === "Пользователь успешно зарегистрирован") {
+      toast(message)
+      navigate('/login')
     }
   },[message])
 

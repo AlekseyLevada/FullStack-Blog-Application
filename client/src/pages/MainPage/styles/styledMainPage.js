@@ -12,7 +12,7 @@ export const StyledMainPage = styled.div`
     color: #fff;
     font-size: 18px;
     font-weight: 700;
-    border-radius: 3px;
+    border-radius: 13px;
     border: none;
   }
 `
