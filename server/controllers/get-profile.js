@@ -6,11 +6,11 @@ export const getProfile = async (req, res) => {
         const user = await User.findById(req.userId)
 
         if(!user) {
-            return res.status(404).json(
+            return res.json(
                 {
                     "message": "Нет такого пользователя",
                 }
-            )
+            ).status(404)
         }
 
         const token = JWT.sign(
@@ -21,19 +21,19 @@ export const getProfile = async (req, res) => {
             }
         )
 
-        return res.status(200).json(
+        return res.json(
             {
                 user,
                 token,
             }
-        )
+        ).status(200)
     }
     catch (err) {
         console.log(err)
-        return res.status(404).json(
+        return res.json(
             {
                 "message": "Нет доступа",
             }
-        )
+        ).status(404)
     }
 }

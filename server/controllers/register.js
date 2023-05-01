@@ -22,18 +22,11 @@ export const register = async (req, res) => {
       password: hash,
     });
 
-    const token = JWT.sign(
-        { id: user._id },
-        process.env.JWT_SECRET,
-        { expiresIn: '30d'}
-    )
-
     await user.save();
 
     return res.json(
         {
           user,
-          token,
           "message": "Пользователь успешно зарегистрирован",
         }).status(200);
 

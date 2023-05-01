@@ -18,12 +18,11 @@ export const authSlice = createSlice({
             state.user = null
             state.token = null
             state.status = null
-            state.message = 'Вы вышли из профиля'
         }
     },
     extraReducers: builder => {
         // Registration User
-        builder.addCase(registerUser.pending, (state, action) => {
+        builder.addCase(registerUser.pending, (state) => {
             state.status = null
             state.isLoading = true
         })
@@ -34,16 +33,14 @@ export const authSlice = createSlice({
             state.token = action.payload.token
             state.user = action.payload.user
         })
-        builder.addCase(registerUser.rejected, (state, action) => {
+        builder.addCase(registerUser.rejected, (state) => {
             state.isLoading = false
             state.user = null
             state.token = null
-            state.message = action.payload.message
-            state.status = action.payload.status
         })
 
         // Login User
-        builder.addCase(loginUser.pending, (state, action) => {
+        builder.addCase(loginUser.pending, (state) => {
             state.isLoading = true
             state.status = null
         })
@@ -54,16 +51,14 @@ export const authSlice = createSlice({
             state.token = action.payload.token
             state.user = action.payload.user
         })
-        builder.addCase(loginUser.rejected, (state, action) => {
+        builder.addCase(loginUser.rejected, (state) => {
             state.isLoading = false
             state.user = null
             state.token = null
-            state.status = action.payload.message
-            state.status = action.payload.status
         })
 
         // getProfile
-        builder.addCase(userProfile.pending, (state, action) => {
+        builder.addCase(userProfile.pending, (state) => {
             state.isLoading = true
             state.status = null
         })
@@ -74,12 +69,13 @@ export const authSlice = createSlice({
             state.token = action.payload?.token
             state.user = action.payload?.user
         })
-        builder.addCase(userProfile.rejected, (state, action) => {
+        builder.addCase(userProfile.rejected, (state) => {
             state.isLoading = false
             state.user = null
             state.token = null
-            state.status = action.payload.message
-            state.status = action.payload.status
         })
     }
 })
+
+export const {logout} = authSlice.actions
+export const checkIsAuth = state => Boolean(state.auth.token)

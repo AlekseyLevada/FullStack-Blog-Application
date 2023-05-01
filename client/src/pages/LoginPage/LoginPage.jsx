@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import {loginUser} from "../../store/thunks/loginUser";
 import {StyledLoginPage} from './styles/styledLoginPage';
 import {StyledAuthForm} from "./styles/styledAuthForm";
@@ -8,6 +9,7 @@ import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 
 export const LoginPage = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -25,8 +27,9 @@ export const LoginPage = () => {
     }
 
     useEffect(() => {
-        if(message) {
+        if(message === 'Добро пожаловать, вы вошли в систему') {
             toast(message)
+            navigate('/posts')
         }
     }, [message])
 

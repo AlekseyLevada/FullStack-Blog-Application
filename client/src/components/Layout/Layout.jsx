@@ -4,7 +4,7 @@ import {Navbar} from '../Navbar/Navbar';
 export const Layout = ({children}) => {
     return(
         <StyledLayout>
-            <Navbar/>
+            {/*<Navbar/>*/}
             {children}
         </StyledLayout>
     )

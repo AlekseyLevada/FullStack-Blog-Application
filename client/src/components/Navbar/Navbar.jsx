@@ -3,11 +3,13 @@ import {StyledButton} from "./styles/styledButton";
 import {StyledLogo} from "./styles/styledLogo";
 import {StyledMenu} from "./styles/styledMenu";
 import {Link} from "react-router-dom";
-import Logo from '../../images/logo-img/logo.svg'
+import Logo from '../../images/logo-img/logo.svg';
+import {useSelector} from "react-redux";
+import {checkIsAuth} from "../../store/features/auth/authSlice";
 
 export const Navbar = () => {
 
-    const isAuth = false
+    const isAuth = useSelector(checkIsAuth)
 
     return(
         <StyledNavbar>
